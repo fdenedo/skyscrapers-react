@@ -1,0 +1,30 @@
+.seen-clue-container {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top, .bottom {
+    flex-direction: row;
+}
+
+.left, .right {
+    flex-direction: column;
+}
+
+.clue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.clue.error {
+    color: red;
+}
