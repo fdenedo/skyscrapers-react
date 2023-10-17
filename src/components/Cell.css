@@ -29,7 +29,7 @@
 }
 
 .cell.selected .cell-inner {
-    border-color: blue;
+    border-color: rgb(113, 113, 253);
 }
 
 .cell.given {
