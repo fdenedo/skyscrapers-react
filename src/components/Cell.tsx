@@ -7,6 +7,7 @@ interface CellProps {
     isSelected: boolean;
     isGiven?: boolean;
     isError?: boolean;
+    isFirstInteractableInGrid?: boolean;
     value: number | null;
     onClick: (shiftPressed: boolean) => void;
     onFocus: () => void;
@@ -18,6 +19,7 @@ const Cell: React.FC<CellProps> = ({
     isSelected, 
     isGiven,
     isError,
+    isFirstInteractableInGrid,
     value, 
     onClick,
     onFocus 
@@ -33,7 +35,7 @@ const Cell: React.FC<CellProps> = ({
         data-y={y} 
         onClick={handleClick}
       >
-        <div className="cell-inner" onFocus={onFocus} tabIndex={isGiven ? -1 : 0}>{value}</div>      
+        <div className="cell-inner" onFocus={onFocus} tabIndex={!isGiven && isFirstInteractableInGrid ? 0 : -1}>{value}</div>      
       </div>
     )
   }
