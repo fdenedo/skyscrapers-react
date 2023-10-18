@@ -22,7 +22,7 @@ const Cell: React.FC<CellProps> = ({
     isFirstInteractableInGrid,
     value, 
     onClick,
-    onFocus 
+    onFocus
 }) => {
     const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const shiftPressed = e.shiftKey;
