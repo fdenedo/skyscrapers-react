@@ -4,6 +4,6 @@ export interface CellPosition {
 }
 
 export interface CellPencilLayer {
-    cornerValues: number[],
-    centreValues: number[]
+    cornerValues: Set<number>,
+    centreValues: Set<number>
 }
