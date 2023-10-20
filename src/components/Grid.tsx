@@ -24,7 +24,6 @@ const Grid: React.FC<GridProps> = ({
   const [shouldResetCellSelection, setShouldResetCellSelection] = useState(true);
   const [isGivenCells] = useState<boolean[][]>(givenDigits.map(row => row.map(cell => !!cell)));
   const [firstInteractableCell, setFirstInteractableCell] = useState<CellPosition | null>(null);
-  const [inputType, setInputType] = useState<'value' | 'corner' | 'centre'>('value');
 
   const keyActions = [
     {
@@ -66,10 +65,6 @@ const Grid: React.FC<GridProps> = ({
         }
     }
   }
-
-  const cycleInputType = () => {
-    setInputType(inputType === 'value' ? 'corner' : (inputType === 'corner' ? 'centre' : 'value'));
-  };
 
   useEffect(() => {
     const gridElement = document.querySelector('.grid') as HTMLElement;
@@ -157,29 +152,26 @@ const Grid: React.FC<GridProps> = ({
 
   return (
     <div className="grid">
-        <button onClick={cycleInputType}>Cycle Input Type</button>
-        {gridValues.map((row, y) => (
-            <div className="grid-row" key={y}>
-                {row.map((cellValue, x) => (
-                    <Cell
-                        key={`${x}-${y}`}
-                        x={x}
-                        y={y}
-                        isSelected={isCellSelected(x, y)}
-                        isGiven={isGivenCells[y][x]}
-                        isError={errors.some(cell => x === cell.x && y === cell.y)}
-                        isFirstInteractableInGrid={firstInteractableCell?.x === x && firstInteractableCell?.y === y}
-                        value={cellValue === 0 ? null : cellValue}
-                        pencilMarks={}  // This will need to come from Cell's state
-                        inputType={inputType}  // Passing the inputType to Cell
-                        onClick={(shiftPressed) => handleCellClick(x, y, shiftPressed)}
-                        onFocus={() => handleCellFocus(x, y)}
-                    />
-                ))}
-            </div>
-        ))}
+      {gridValues.map((row, y) => (
+        <div className="grid-row" key={y}>
+          {row.map((cellValue, x) => (
+            <Cell
+              key={`${x}-${y}`}
+              x={x}
+              y={y}
+              isSelected={isCellSelected(x, y)}
+              isGiven={isGivenCells[y][x]}
+              isError={errors.some(cell => x === cell.x && y === cell.y)}
+              isFirstInteractableInGrid={firstInteractableCell?.x === x && firstInteractableCell?.y === y}
+              value={cellValue === 0 ? null : cellValue}
+              onClick={(shiftPressed) => handleCellClick(x, y, shiftPressed)}
+              onFocus={() => handleCellFocus(x, y)}
+            />
+          ))}
+        </div>
+      ))}
     </div>
-);
+  );
 }
 
 export default Grid;

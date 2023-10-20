@@ -3,7 +3,7 @@ export interface CellPosition {
     y: number
 }
 
-export interface PencilLayerIF {
+export interface CellPencilLayer {
     cornerValues: Set<number>,
     centreValues: Set<number>
 }
