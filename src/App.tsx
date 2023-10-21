@@ -28,16 +28,18 @@ const App: React.FC = () => {
   const handlePuzzleSizeChange = (size: number) => setPuzzleSize(size);
 
   return (
-    <div className='App'>
-      {gameStarted ? (
-        selectedPuzzle ? <PuzzleArea puzzle={selectedPuzzle} /> : <div className="Loading">Loading</div>
-      ) : (
-        <MainMenu 
-          selectedPuzzleSize={puzzleSize ? puzzleSize : defaultPuzzleSize} 
-          onGameStart={handleGameStart}
-          onPuzzleSizeChange={handlePuzzleSizeChange} 
-        />
-      )}
+    <div className="page-wrapper">
+      <div className='App'>
+        {gameStarted ? (
+          selectedPuzzle ? <PuzzleArea puzzle={selectedPuzzle} /> : <div className="Loading">Loading</div>
+        ) : (
+          <MainMenu 
+            selectedPuzzleSize={puzzleSize ? puzzleSize : defaultPuzzleSize}
+            onGameStart={handleGameStart}
+            onPuzzleSizeChange={handlePuzzleSizeChange}
+          />
+        )}
+      </div>
     </div>
   )
 }

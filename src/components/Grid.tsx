@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Cell from "./Cell";
-import './Grid.css'
+import './PuzzleArea.css'
 import { CellPosition } from "../models/Cell";
 
 interface GridProps {
@@ -23,6 +23,7 @@ const Grid: React.FC<GridProps> = ({
   const [gridValues, setGridValues] = useState(givenDigits);
   const [shouldResetCellSelection, setShouldResetCellSelection] = useState(true);
   const [isGivenCells] = useState<boolean[][]>(givenDigits.map(row => row.map(cell => !!cell)));
+  const [firstInteractableCell, setFirstInteractableCell] = useState<CellPosition | null>(null);
 
   const keyActions = [
     {
@@ -72,6 +73,17 @@ const Grid: React.FC<GridProps> = ({
         gridElement?.removeEventListener('keydown', handleKeyDown);
     };
   });
+
+  useEffect(() => {
+    for (let y = 0; y < ySize; y++) {
+      for (let x = 0; x < xSize; x++) {
+        if (!isGivenCells[y][x]) {
+          setFirstInteractableCell({ x, y });
+          return;
+        }
+      }
+    }
+  }, [isGivenCells, xSize, ySize]);
 
   const isCellSelected = (x: number, y: number): boolean => {
     return selectedCells.some(cell => cell.x === x && cell.y === y);
@@ -150,6 +162,7 @@ const Grid: React.FC<GridProps> = ({
               isSelected={isCellSelected(x, y)}
               isGiven={isGivenCells[y][x]}
               isError={errors.some(cell => x === cell.x && y === cell.y)}
+              isFirstInteractableInGrid={firstInteractableCell?.x === x && firstInteractableCell?.y === y}
               value={cellValue === 0 ? null : cellValue}
               onClick={(shiftPressed) => handleCellClick(x, y, shiftPressed)}
               onFocus={() => handleCellFocus(x, y)}

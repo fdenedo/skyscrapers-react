@@ -4,16 +4,18 @@
     -moz-user-select: none;
     -ms-user-select: none;
 
+    height: var(--cell-size);
+    width: var(--cell-size);
     border: 1px solid #000;
     float: left;
     font-size: 1.5rem;
-    line-height: 40px;
-    height: 40px;
+    line-height: 3rem;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 40px;
+    color: #2b2b2b;
+    text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.3), 1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 
 .cell-inner {
@@ -28,8 +30,17 @@
     font-size: 2rem;
 }
 
+.skyscraper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 80%;
+    border-radius: 4px;
+}
+
 .cell.selected .cell-inner {
-    border-color: blue;
+    border-color: rgb(113, 113, 253);
 }
 
 .cell.given {
