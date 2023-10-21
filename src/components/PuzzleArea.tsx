@@ -96,14 +96,16 @@ const PuzzleArea: React.FC<PuzzleAreaProps> = ({
         console.log(`${cellsChanged.length} cells changed: `, cellsChanged);
     }
 
-    const gridSize = `${puzzle.size.columns * 48}px`;
-    const margin = '10px';
-    const clueContainerCrossAxis = '40px';
+    const calculateCellSizeInPx = (size: number) => {
+        if (size === 3) return 64;
+        if (size === 4) return 56;
+        return 48;
+    }
+    
+    const cellSize = `${calculateCellSizeInPx(puzzle.size.rows)}px`;
     
     const style: React.CSSProperties = {
-        '--grid-size': gridSize,
-        '--margin': margin,
-        '--clue-container-cross-axis': clueContainerCrossAxis
+        '--cell-size': cellSize
     } as React.CSSProperties;
 
     return (

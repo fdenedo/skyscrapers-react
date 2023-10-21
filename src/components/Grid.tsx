@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Cell from "./Cell";
-import './Grid.css'
+import './PuzzleArea.css'
 import { CellPosition } from "../models/Cell";
 
 interface GridProps {

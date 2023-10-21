@@ -4,16 +4,16 @@
     -moz-user-select: none;
     -ms-user-select: none;
 
+    height: var(--cell-size);
+    width: var(--cell-size);
     border: 1px solid #000;
     float: left;
     font-size: 1.5rem;
-    line-height: 40px;
-    height: 40px;
+    line-height: 3rem;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 40px;
 }
 
 .cell-inner {

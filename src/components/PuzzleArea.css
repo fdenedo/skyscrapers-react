@@ -12,23 +12,21 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 320px;
-    height: 320px;
 }
 
 .grid {
-    width: var(--grid-size);
-    height: var(--grid-size);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .seen-clue-container.top, .seen-clue-container.bottom {
-    height: var(--clue-container-cross-axis);
-    width: var(--grid-size);
+    height: var(--cell-size);
 }
 
 .seen-clue-container.left, .seen-clue-container.right {
-    height: var(--grid-size);
-    width: var(--clue-container-cross-axis);
+    width: var(--cell-size);
 }
 
 .puzzle-area-middle {
